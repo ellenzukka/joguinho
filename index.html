@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js" defer></script>
+
+    <title>Galinha Jump</title>
+</head>
+
+<body>
+
+    <div class="game-board">
+
+        <img src="./images/clouds.png" class="clouds">
+
+        <img src="./images/galinha.gif" class="mario">
+
+        <img src="./images/pipe.png" class="pipe">
+
+        <img src="./images/grama.png" class="grass">
+
+        <!-- PONTUAÇÃO -->
+        <div class="score">
+            Pontuação: <span id="points">0</span>
+        </div>
+
+        <!-- MENU INICIAL -->
+        <div class="screen start-screen" id="start-screen">
+
+            <h1>🌻 Stardew chiken 🌻</h1>
+
+            <p>Uma aventura no campo!</p>
+
+            <p>🐔 Prepare-se para jogar!</p>
+
+            <button id="start-button">
+                COMEÇAR
+            </button>
+
+        </div>
+
+        <!-- GAME OVER -->
+        <div class="screen game-over-screen" id="game-over-screen">
+
+            <h1>GAME OVER!</h1>
+
+            <p>🐔 A aventura chegou ao fim...</p>
+
+            <p>Sua pontuação:</p>
+
+            <h2 id="final-points">0</h2>
+
+            <button id="restart-button">
+                JOGAR NOVAMENTE
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

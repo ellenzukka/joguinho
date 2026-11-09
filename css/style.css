@@ -1,0 +1,257 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-board {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 270px;
+    animation: pipe-animation 1.5s infinite linear;
+}
+
+.mario {
+    width: 180px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    transform: translateY(0);
+}
+
+/* PULO DA GALINHA */
+.mario.jump {
+    animation: super-jump 900ms ease-in-out !important;
+}
+
+.clouds {
+    position: absolute;
+    width: 550px;
+    animation: clouds-animation 20s infinite linear;
+}
+
+.grass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    object-position: bottom;
+    z-index: 1;
+}
+
+/* PONTUAÇÃO */
+.score {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff7d6;
+    text-shadow: 2px 2px 4px #000;
+    font-family: Georgia, serif;
+}
+
+/* MENUS */
+.screen {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    background:
+        linear-gradient(
+            rgba(25, 48, 28, 0.78),
+            rgba(25, 48, 28, 0.88)
+        );
+
+    color: #fff2c9;
+    text-align: center;
+    font-family: Georgia, serif;
+    padding: 20px;
+    isolation: isolate;
+}
+
+/* PLAQUINHA DE MADEIRA */
+.screen::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: min(88%, 560px);
+    height: min(78%, 430px);
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #98683f 0px,
+            #98683f 18px,
+            #895a35 19px,
+            #895a35 22px
+        );
+
+    border: 8px solid #563a26;
+    outline: 4px solid #d4a65f;
+    box-shadow:
+        0 0 0 8px #49301f,
+        0 12px 25px rgba(0, 0, 0, 0.5);
+
+    border-radius: 5px;
+}
+
+/* DETALHES DO TÍTULO */
+.screen h1 {
+    font-size: clamp(30px, 6vw, 52px);
+    color: #ffe58a;
+    text-shadow:
+        3px 3px 0 #75451f,
+        5px 5px 0 #392719;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.screen p {
+    font-size: clamp(15px, 3vw, 21px);
+    color: #fff3d3;
+    text-shadow: 2px 2px 2px #49301f;
+}
+
+.screen h2 {
+    font-size: 48px;
+    color: #ffe58a;
+    text-shadow: 3px 3px 0 #75451f;
+}
+
+/* BOTÕES */
+.screen button {
+    margin-top: 12px;
+    padding: 15px 32px;
+
+    border: 4px solid #70451f;
+    border-radius: 4px;
+
+    background: #e9c66f;
+    color: #53371e;
+
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: bold;
+
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.3),
+        0 5px 0 #59391e;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.screen button:hover {
+    background: #ffe59a;
+    transform: translateY(-3px);
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.4),
+        0 8px 0 #59391e;
+}
+
+.screen button:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #59391e;
+}
+
+/* ESCONDER TELAS */
+.hidden {
+    display: none !important;
+}
+
+.game-over-screen {
+    display: none;
+}
+
+.game-over-screen.show {
+    display: flex;
+}
+
+/* PAUSA AS ANIMAÇÕES ANTES DE COMEÇAR */
+.game-board:not(.playing) .pipe,
+.game-board:not(.playing) .clouds {
+    animation-play-state: paused;
+}
+
+/* ANIMAÇÃO DO CANO */
+@keyframes pipe-animation {
+    from {
+        right: -80px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+/* ANIMAÇÃO DO PULO */
+@keyframes super-jump {
+    0% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-200px);
+    }
+
+    60% {
+        transform: translateY(-200px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* ANIMAÇÃO DAS NUVENS */
+@keyframes clouds-animation {
+    from {
+        right: -550px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 500px) {
+    .screen::before {
+        width: 88%;
+        height: 360px;
+    }
+
+    .screen button {
+        font-size: 16px;
+        padding: 13px 22px;
+    }
+
+    .score {
+        font-size: 19px;
+    }
+}
+
+
